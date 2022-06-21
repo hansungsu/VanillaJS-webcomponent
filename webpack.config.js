@@ -1,4 +1,6 @@
-const path = require("path")
+const path = require("path");
+const webpack = require('webpack');
+const banner = require("./banner.js")
 
 module.exports = {
   mode: "development",
@@ -20,5 +22,19 @@ module.exports = {
         use: ["style-loader", "css-loader"], // style-loader를 앞에 추가한다
       },
     ],
-  }
+  },
+  plugins: [
+    new webpack.BannerPlugin(banner),
+    new webpack.DefinePlugin({
+      //기본 -> process.env.NODE_ENV
+      VERSION: JSON.stringify("v.1.2.3"),
+      PRODUCTION: JSON.stringify(false),
+      MAX_COUNT: JSON.stringify(999),
+      "api.domain": JSON.stringify("http://dev.api.domain.com"),
+    })
+  ],
 }
+
+// export default {
+//   plugins: [new webpack.DefinePlugin({})],
+// }

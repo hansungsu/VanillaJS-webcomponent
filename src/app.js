@@ -50,6 +50,9 @@ export default class App extends Component {
         });
 
         console.log('hi');
+        console.log(process.env.NODE_ENV);
+        console.log(VERSION);
+        console.log(api.domain);
       }
 
       get filteredItems () {
